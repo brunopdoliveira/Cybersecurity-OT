@@ -1,0 +1,35 @@
+FROM debian:stable
+
+LABEL version="2024"
+LABEL description="Imagem Debian para servidores  e roteadores"
+LABEL maintainer="brunopdo@outlook.com.br"
+
+RUN apt update \
+    && apt upgrade -y\
+    && apt install -y\
+            apt-utils aptitude \
+            procps \
+            net-tools iptables \
+            bind9-host dnsutils  \
+            traceroute \
+            iputils-ping \
+            iputils-tracepath \
+            htop \
+            tcpdump \
+            netcat-traditional telnet \
+            links man \
+            curl wget \
+            nano vim \
+            nmap \
+            ftp \
+            ethtool mtr \
+            openssh-client \
+            openssh-server \
+            frr frr-doc \
+            proftpd-basic \
+            nginx \
+    && apt autoremove -y \
+    && apt clean
+
+CMD /usr/local/bin/inicio.sh
+
