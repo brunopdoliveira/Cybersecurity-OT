@@ -11,7 +11,7 @@
 git clone https://github.com/brunopdoliveira/NetLabDocker.git
 ```
 
-## Executando os containers (pensando na disciplina inf534)
+## Executando os containers
 ```
 cd NetLabDocker
 cd lab
