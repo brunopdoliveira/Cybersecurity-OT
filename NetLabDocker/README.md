@@ -11,10 +11,10 @@
   * Desktop: https://docs.docker.com/desktop
 ## Clonando o repositorio
 ```
-git clone https://github.com/sidneypio/NetLabDocker.git
+git clone https://github.com/brunopdoliveira/NetLabDocker.git
 ```
 
-## Executando os containers (pensando na disciplina inf534)
+## Executando os containers
 ```
 cd NetLabDocker
 cd lab-inf534
@@ -49,7 +49,7 @@ make desliga
 
 # Algumas informações sobre os diretórios
 
-* [imagens](https://github.com/sidneypio/NetLabDocker/tree/main/imagens#readme)
-* [lab-inf534](https://github.com/sidneypio/NetLabDocker/tree/main/lab-inf534#readme)
+* [imagens](https://github.com/brunopdoliveira/NetLabDocker/tree/main/imagens#readme)
+* [netlab](https://github.com/brunopdoliveira/NetLabDocker/tree/main/NetLab#readme)
 
 
