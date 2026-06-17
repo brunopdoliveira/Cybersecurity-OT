@@ -8,14 +8,14 @@
   * Desktop: https://docs.docker.com/desktop
 ## Clonando o repositorio
 ```
-git clone https://github.com/sidneypio/NetLabDocker.git
+git clone https://github.com/brunopdoliveira/NetLabDocker.git
 ```
 
 ## Executando os containers (pensando na disciplina inf534)
 ```
 cd NetLabDocker
-cd lab-inf534
-make liga
+cd lab
+make start
 ```
 
 ## Testando 
@@ -39,7 +39,7 @@ R1#
 
 ## Desligando o laboratório
 ```
-make desliga
+make stop
 ```
 
 ---
