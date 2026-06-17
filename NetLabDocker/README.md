@@ -17,8 +17,8 @@ git clone https://github.com/brunopdoliveira/NetLabDocker.git
 ## Executando os containers
 ```
 cd NetLabDocker
-cd lab-inf534
-make liga
+cd lab
+make start
 ```
 
 ## Testando 
@@ -42,7 +42,7 @@ R1#
 
 ## Desligando o laboratório
 ```
-make desliga
+make stop
 ```
 
 ---
