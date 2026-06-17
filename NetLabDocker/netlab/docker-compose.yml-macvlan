@@ -1,0 +1,163 @@
+version: '3.9'
+services:
+    cliente1:
+        image: sidneypio/debian-inf534
+        container_name: cliente1
+        hostname: cliente1
+        privileged: true
+        volumes:
+            - ./home/cliente1:/home
+            - ./conf/resolv.conf:/etc/resolv.conf
+            - ./conf/cliente1/inicio.sh:/usr/local/bin/inicio.sh
+        networks:
+            redeCliente:
+                ipv4_address: 10.10.10.10
+                ipv6_address: 2001:db8:2021:10::10
+
+
+    cliente2:
+        image: sidneypio/debian-inf534
+        container_name: cliente2
+        hostname: cliente2
+        privileged: true
+        volumes:
+            - ./home/cliente2:/home
+            - ./conf/resolv.conf:/etc/resolv.conf
+            - ./conf/cliente2/inicio.sh:/usr/local/bin/inicio.sh
+        networks:
+            redeCliente:
+                ipv4_address: 10.10.10.20
+                ipv6_address: 2001:db8:2021:10::20
+
+    cliente3:
+        image: sidneypio/debian-inf534
+        container_name: cliente3
+        hostname: cliente3
+        privileged: true
+        volumes:
+            - ./home/cliente3:/home
+            - ./conf/resolv.conf:/etc/resolv.conf
+            - ./conf/cliente3/inicio.sh:/usr/local/bin/inicio.sh
+        networks:
+            redeCliente:
+                ipv4_address: 10.10.10.30
+                ipv6_address: 2001:db8:2021:10::30
+
+    R1:
+        image: sidneypio/debian-inf534
+        container_name: R1
+        hostname: R1
+        privileged: true
+        volumes:
+            - ./home/R1:/home
+            - ./conf/roteador/frr-rip:/etc/frr
+            - ./conf/roteador/inicio.sh:/usr/local/bin/inicio.sh
+        networks:
+            redeCliente: # eth0
+                ipv4_address: 10.10.10.100  
+                ipv6_address: 2001:db8:2021:10::100
+            redeR1R2: #eth1
+                ipv4_address: 10.10.50.10
+                ipv6_address: 2001:db8:2021:50::10
+    R2:
+        image: sidneypio/debian-inf534
+        container_name: R2
+        hostname: R2
+        privileged: true
+        volumes:
+            - ./home/R2:/home
+            - ./conf/roteador/frr-rip:/etc/frr
+            - ./conf/roteador/inicio.sh:/usr/local/bin/inicio.sh
+        networks:
+            redeR1R2: #eth0
+                ipv4_address: 10.10.50.20
+                ipv6_address: 2001:db8:2021:50::20
+            redeServidor: #eth1
+                ipv4_address: 10.10.100.100 
+                ipv6_address: 2001:db8:2021:100::100
+
+    web:
+        image: sidneypio/debian-inf534
+        container_name: web
+        hostname: web
+        privileged: true
+        volumes:
+            - ./home/web:/home
+            - ./conf/web/etc_nginx:/etc/nginx
+            - ./conf/web/var_html:/var/www/  
+            - ./conf/resolv.conf:/etc/resolv.conf        
+            - ./conf/web/inicio.sh:/usr/local/bin/inicio.sh
+        networks:
+            redeServidor:
+                ipv4_address: 10.10.100.10 
+                ipv6_address: 2001:db8:2021:100::10 
+
+    ftp:
+        image: sidneypio/debian-inf534
+        container_name: ftp
+        hostname: ftp
+        privileged: true
+        volumes:
+            - ./home/ftp:/home
+            - ./conf/ftp/etc_proftpd:/etc/proftpd
+            - ./conf/resolv.conf:/etc/resolv.conf
+            - ./conf/ftp/inicio.sh:/usr/local/bin/inicio.sh
+        networks:
+            redeServidor:
+                ipv4_address: 10.10.100.20 
+                ipv6_address: 2001:db8:2021:100::20 
+    
+   
+    ssh:
+        image: sidneypio/debian-inf534
+        container_name: ssh
+        hostname: ssh
+        privileged: true
+        volumes:
+            - ./home/ssh:/home
+            - ./conf/ssh/etc_ssh:/etc/ssh
+            - ./conf/resolv.conf:/etc/resolv.conf
+            - ./conf/ssh/inicio.sh:/usr/local/bin/inicio.sh
+        networks:
+            redeServidor:
+                ipv4_address: 10.10.100.30 
+                ipv6_address: 2001:db8:2021:100::30 
+
+    dns:
+        image: sidneypio/alpine-bind
+        container_name: dns
+        hostname: dns
+        privileged: true
+        volumes:
+            - ./home/dns:/home
+            - ./conf/dns/named.conf:/etc/bind/named.conf
+            - ./conf/resolv.conf:/etc/resolv.conf
+            - ./conf/dns/master:/etc/bind/master
+            - ./conf/dns/inicio.sh:/usr/local/bin/inicio.sh
+        networks:
+            redeServidor:
+                ipv4_address: 10.10.100.40 
+                ipv6_address: 2001:db8:2021:100::40            
+
+networks:
+    redeCliente:
+        driver: macvlan
+        enable_ipv6: true
+        ipam:
+            config:
+            - subnet: 10.10.10.0/24
+            - subnet: "2001:db8:2021:10::/64"
+    redeR1R2:
+        driver: macvlan
+        enable_ipv6: true
+        ipam:
+            config:
+            - subnet: 10.10.50.0/24
+            - subnet: "2001:db8:2021:50::/64"
+    redeServidor:
+        driver: macvlan
+        enable_ipv6: true
+        ipam:
+            config:
+            - subnet: 10.10.100.0/24
+            - subnet: "2001:db8:2021:100::/64"
