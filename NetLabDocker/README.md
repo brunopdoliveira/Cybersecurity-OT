@@ -49,7 +49,7 @@ make desliga
 
 # Algumas informações sobre os diretórios
 
-* [imagens](https://github.com/brunopdoliveira/NetLabDocker/imagens#readme)
+* [imagens](https://github.com/brunopdoliveira/Cybersecurity-OT/tree/main/NetLabDocker/imagens#readme) 
 * [netlab](https://github.com/brunopdoliveira/NetLabDocker/tree/main/NetLab#readme)
 
 
