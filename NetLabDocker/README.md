@@ -1,5 +1,5 @@
 # NetLabDocker - Laboratório de redes usando docker
-* A ideia é criar um ambiente usando docker para estudo de protocolos de rede
+* Lab de redes dockerizado para estudo de conceitos de rede
 
 --- 
 
@@ -17,7 +17,7 @@ git clone https://github.com/brunopdoliveira/NetLabDocker.git
 ## Executando os containers
 ```
 cd NetLabDocker
-cd lab
+cd netlab
 make start
 ```
 
