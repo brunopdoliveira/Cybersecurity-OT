@@ -3,24 +3,29 @@
 options {
 	directory "/var/bind";
 
+	// Escuta em todas as interfaces IPv4
 	listen-on {
 		any;
 	};
 
+	// Escuta em todas as interfaces IPv6
 	listen-on-v6 {
 		any;
 	};
 
+	// Permite consultas DNS
 	allow-query {
 		any;
 	};
 
+	// Impede transferência de zonas
 	allow-transfer {
 		none;
 	};
 
 	pid-file "/var/run/named/named.pid";
 
+	// Servidor somente autoritativo
 	allow-recursion {
 		none;
 	};
@@ -36,15 +41,15 @@ zone "netlab.br" IN {
 };
 
 
-// Zona reversa da rede de clientes 192.168.10.0/24
+// Zona reversa IPv4 da rede de clientes 192.168.10.0/24
 zone "10.168.192.in-addr.arpa" IN {
 	type master;
-	file "/etc/bind/master/dnsrev192.rev";
+	file "/etc/bind/master/netlab.rev";
 };
 
 
-// Zona reversa da rede de servidores 100.100.100.0/24
-zone "100.100.100.in-addr.arpa" IN {
+// Zona reversa IPv6 da rede de clientes 2001:db8:2026:10::/64
+zone "0.1.0.0.6.2.0.2.8.b.d.0.1.0.0.2.ip6.arpa" IN {
 	type master;
-	file "/etc/bind/master/dnsrev100.rev";
+	file "/etc/bind/master/netlab.rev6";
 };
