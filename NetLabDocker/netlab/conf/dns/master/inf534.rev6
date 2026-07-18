@@ -1,17 +1,15 @@
 $TTL 86400
 
-@ IN SOA inf534.br root.inf534.br (
-  2022071401
+@ IN SOA dns.netlab.br. root.netlab.br. (
+  2026071801
   3600
   900
   604800
   86400
 )
 
-@      IN NS dns
-dns	IN	AAAA 2001:db8:2021:100::40
+@ IN NS dns.netlab.br.
 
-0.1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0 IN	PTR	cliente1.inf534.br.
-0.1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0	IN	PTR	web.inf534.br.
-0.2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0 IN	PTR	ftp.inf534.br.
-0.3.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0 IN	PTR	ssh.inf534.br.
+0.1.0.0.0.0.0.0.0.0.0.0.0.0.0.0 IN PTR cliente1.netlab.br.
+0.2.0.0.0.0.0.0.0.0.0.0.0.0.0.0 IN PTR cliente2.netlab.br.
+0.3.0.0.0.0.0.0.0.0.0.0.0.0.0.0 IN PTR cliente3.netlab.br.
