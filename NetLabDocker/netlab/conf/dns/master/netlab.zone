@@ -1,0 +1,49 @@
+$TTL 7200 ; TTL padrão
+
+@ IN SOA dns.netlab.br. root.netlab.br. (
+  2026071801 ; Serial
+  3600       ; Intervalo de atualização
+  900        ; Intervalo de nova tentativa
+  604800     ; Expiração
+  86400      ; Negative Cache TTL
+)
+
+@       IN NS    dns.netlab.br.
+
+; Servidor DNS e alias para o BIND
+dns     IN A     100.100.100.40
+        IN AAAA  2001:db8:2026:100::40
+bind    IN CNAME dns
+
+; Clientes
+cliente1  600 IN A     192.168.10.10
+              IN AAAA  2001:db8:2026:10::10
+
+cliente2      IN A     192.168.10.20
+              IN AAAA  2001:db8:2026:10::20
+
+cliente3      IN A     192.168.10.30
+              IN AAAA  2001:db8:2026:10::30
+
+sensor        IN A     192.168.10.50
+              IN AAAA  2001:db8:2026:10::50
+
+monitor       IN A     192.168.10.60
+              IN AAAA  2001:db8:2026:10::60
+
+; Servidor web e alias WWW
+web           IN A     100.100.100.10
+              IN AAAA  2001:db8:2026:100::10
+www           IN CNAME web
+
+; Servidor FTP
+ftp           IN A     100.100.100.20
+              IN AAAA  2001:db8:2026:100::20
+
+; Servidor SSH
+ssh           IN A     100.100.100.30
+              IN AAAA  2001:db8:2026:100::30
+
+; Servidor MQTT
+mqtt          IN A     100.100.100.50
+              IN AAAA  2001:db8:2026:100::50
