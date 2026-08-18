@@ -1,0 +1,62 @@
+******************** SIEMENS devices ********************
+https://46.27.175.241/
+https://93.241.82.82/
+https://41.214.160.179/
+http://144.178.194.187/Portal/Portal.mwsl?PriNav=Start
+
+
+******************** Basic Filters ********************
+hostname          Nome do host           hostname:"gov.br"
+net               IP ou range CIDR       net:"200.147.67.0/24"
+port              Porta específica       port:21
+org               Organização/ASN        org:"Vivo"
+country           País                   country:"BR"
+city              Cidade                 city:"São Paulo"
+title             Título HTML            title:"Index of /"
+product           Nome do serviço        product:"Apache"
+html              Palavras HTML          html:"admin login"
+
+
+****************** Specific Filters ******************
+Câmeras IP com stream                   port:554 has_screenshot:true
+RDP                                     exposto port:3389 has_screenshot:true country:BR city:"São Paulo"
+Elasticsearch aberto                    port:9200 product:"ElasticSearch"
+SCADA/ICS                               port:502 or port:102 or product:"Modbus"
+Servidores                              MongoDB port:27017
+Painel de roteadores                    title:"RouterOS" or html:"mikrotik"
+Jenkins desprotegido                    title:"Dashboard [Jenkins]"
+PLCs sem autenticação                   port:502 country:"BR"
+Interfaces Web de controle              title:"SCADA" OR html:"SCADA"
+HMI (Interface Homem Máquina)           html:"HMI"
+VNC/RDP sem senha                       port:5900 authentication disabled
+Exposição com localização geográfica    has_geo:true country:"BR" product:"modbus"
+
+
+************* Protocolos ICS e SCADA ****************
+Modbus             port:502             Usado em PLCs. Comunicação sem autenticação.
+DNP3               port:20000           Protocolo comum em redes elétricas (energia).
+BACnet             port:47808           Automação predial (HVAC, iluminação, segurança).
+Siemens S7         port:102             PLCs Siemens, muito comum em OT.
+IEC 60870-5-104    port:2404            Protocolos de automação e energia europeus.
+EtherNet/IP        port:44818           Rockwell/Allen Bradley – automação industrial.
+ProConOS           product:"ProConOS"   Soft PLC. Exposição indica ambiente industrial crítico.
+
+
+************** Vendors and Technology **************
+Siemens S7                             PLC port:102 product:"Siemens"
+Rockwell Automation                    port:44818
+Schneider Electric                     product:"Schneider Electric"
+Wago                                   product:"WAGO" port:2455
+Moxa                                   title:"Moxa" OR html:"Moxa Technologies"
+Honeywell                              product:"Honeywell"
+GE Mark VIe                            html:"GE Fanuc"
+Koyo/DirectLOGIC                       product:"Koyo" OR product:"DirectLOGIC"
+
+
+****************** IOT Devices ******************
+Câmeras IP           port:554 has_screenshot:true         RTSP de câmeras sem autenticação
+Hikvision            http.title:"Hikvision" port:80       Marca comum com vulnerabilidades conhecidas
+DVR/NVR              html:"DVR WebClient"                 Gravadores de vídeo IP expostos
+Router Industrial    html:"Moxa" OR title:"Moxa"          Moxa é comum em gateways industriais
+Building Automation  port:47808                           BACnet Prédios inteligentes e automação predial
+IoT genérico         html:"Smart Home" OR "IoT Device"    Dispositivos caseiros ou industriais
